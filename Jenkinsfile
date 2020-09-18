@@ -2,10 +2,12 @@
 	agent none
 
 	stages {
+		
+		stage ('Run make & Maven') {
+			
+		parallel {
 			
 		stage ('make') {
-			
-			parallel {
 				
 			agent { label 'slave1' }
 			steps {
