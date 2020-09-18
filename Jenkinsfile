@@ -2,10 +2,11 @@
 	agent none
 
 	stages {
-		
-		parallel (
 			
 		stage ('make') {
+			
+			parallel {
+				
 			agent { label 'slave1' }
 			steps {
 			  	git 'https://github.com/Mahub-123/github1.git'
@@ -21,7 +22,7 @@
 				sh 'mvn clean install'
 			      }
 			}
-		)
+		}
 		
 	}
 }
