@@ -29,7 +29,7 @@ pipeline {
 							else
 							git clone  https://github.com/Mahub-123/java_maven_web.git
 								cd java-maven_web
-								mvn install
+								mvn clean install
 								echo "Build Successful...!!!"
 							fi
 				'''
