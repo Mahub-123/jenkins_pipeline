@@ -3,11 +3,11 @@
 
 	stages {
 		
-		stage ('Run make & Maven') {
+		stage ('Make & Maven') {
 			
 		parallel {
 			
-		stage ('make') {
+		stage ('Make') {
 				
 			agent { label 'slave1' }
 			steps {
@@ -28,3 +28,5 @@
 		
 	}
 }
+
+	}
