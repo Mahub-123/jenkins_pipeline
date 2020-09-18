@@ -1,33 +1,41 @@
 pipeline {
-	agent { label 'master' }
- 
+	agent none	
 	stages {
-		stage ('c_code') {
-			steps {
-				build 'c_programe'
-				//echo 'This is slaveforc node with STAGE 1'
-				//sh 'sleep 10'
-			}	
+	stage('Build c') {
+		agent { label 'slave1' }
+		steps {
+		      echo 'Building c-project'
+			sh '''								
+							if [[ -d "github1" ]]; then
+								cd github1 && git pull 
+								make
+							else
+							git clone  https://github.com/Mahub-123/github1.git
+								cd github1
+								make
+							fi					
+			   '''
 		}
-		stage ('java_code') {
-			steps {
-				build 'java_code'
-				//echo 'This is slaveforjava with STAGE 2'
-				//sh 'sleep 10'
-			}	
-		}
-		/*stage ('STAGE 3') {
-			steps {
-				echo 'This is slaveforc with STAGE 3'
-				sh 'sleep 10'
-			}	
-		}
-		stage ('STAGE 4') {
-			steps {
-				echo 'This is master with STAGE 4'
-				sh 'sleep 10'
-			}	
-		}
-	*/
 	}
+	stage('Build JAVA'){
+		agent { label 'slave2' }
+		steps {
+		     echo 'Building JAVA project...'
+			sh '''
+							if [[ -d "java_maven_web" ]]; then
+								cd java_maven_web && git pull 
+								mvn clean install
+								echo "Deployed Successful"
+							else
+							git clone  https://github.com/Mahub-123/java_maven_web.git
+								cd java-maven_web
+								mvn install
+								echo "Build Successful...!!!"
+							fi
+				'''
+		}
+	}
+
+}
+
 }
