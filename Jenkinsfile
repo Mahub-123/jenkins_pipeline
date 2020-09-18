@@ -2,7 +2,8 @@
 	agent none
 
 	stages {
-		parallel {
+		
+		//parallel {
 			
 		stage ('make') {
 			agent { label 'slave1' }
@@ -20,7 +21,7 @@
 				sh 'mvn clean install'
 			      }
 			}
-		}
+		//}
 		
 	}
 }
