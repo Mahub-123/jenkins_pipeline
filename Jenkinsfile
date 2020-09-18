@@ -25,12 +25,18 @@ pipeline {
 							if [[ -d "java_maven_web" ]]; then
 								cd java_maven_web && git pull 
 								mvn clean install
+								echo "Build Successful"
+								cd target
+								cp java-tomcat-maven-example.war /home/ec2-user/deploying_part
 								echo "Deployed Successful"
 							else
 							git clone  https://github.com/Mahub-123/java_maven_web.git
 								cd java-maven_web
 								mvn clean install
 								echo "Build Successful...!!!"
+								cd target
+								cp java-tomcat-maven-example.war /home/ec2-user/deploying_part
+								echo "Deployed Successful"
 							fi
 				'''
 		}
