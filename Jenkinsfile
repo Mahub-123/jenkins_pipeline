@@ -1,20 +1,22 @@
 pipeline {
-	agent { label 'changed_slave' }
+	agent { label 'master' }
  
 	stages {
-		stage ('STAGE 1') {
+		stage ('c_code') {
 			steps {
-				echo 'This is slaveforc node with STAGE 1'
-				sh 'sleep 10'
+				build 'c_programe'
+				//echo 'This is slaveforc node with STAGE 1'
+				//sh 'sleep 10'
 			}	
 		}
-		stage ('STAGE 2') {
+		stage ('java_code') {
 			steps {
-				echo 'This is slaveforjava with STAGE 2'
-				sh 'sleep 10'
+				build 'java_code'
+				//echo 'This is slaveforjava with STAGE 2'
+				//sh 'sleep 10'
 			}	
 		}
-		stage ('STAGE 3') {
+		/*stage ('STAGE 3') {
 			steps {
 				echo 'This is slaveforc with STAGE 3'
 				sh 'sleep 10'
@@ -26,5 +28,6 @@ pipeline {
 				sh 'sleep 10'
 			}	
 		}
+	*/
 	}
 }
